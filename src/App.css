@@ -139,9 +139,10 @@ a {
 
 .chat-input {
   display: flex;
+  align-items: center;
   padding: 20px;
   border-top: 1px solid #ddd;
-  resize: vertical;
+  position: relative;
 }
 
 .chat-input textarea {
@@ -149,22 +150,38 @@ a {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  resize: vertical;
+  resize: none;
+  overflow: hidden;
 }
 
-.chat-input button {
-  margin-left: 10px;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
+.chat-input textarea:focus {
+  outline: none;
+}
+
+.chat-buttons {
+  display: flex;
+  position: absolute;
+  right: 30px;
+  bottom: 23px;
+}
+
+.chat-buttons button {
+  background: none;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  margin-left: 15px;
+  padding: 0;
 }
 
-.chat-input button:hover {
-  background-color: #0056b3;
+.send-button {
+  transform: rotate(45deg);
+  color: #141516;
 }
+
+.upload-button {
+  color: #111213;
+}
+
 
 /* Sidebar styles */
 .chat-sidebar {
@@ -229,6 +246,11 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.profile-button:hover,
+.theme:hover
+{
+  background: #6991e7;
 }
 
 .sign-out-button {

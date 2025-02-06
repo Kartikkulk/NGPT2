@@ -199,25 +199,32 @@ function ChatTriggerUI() {
           )}
         </div>
         <div className="chat-input">
-          <textarea
-            rows="1"
-            placeholder="Type your message here..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault(); // Prevent new line
-                sendMessage(); // Send message on Enter key press
-              }
-            }}
-          />
-          <button className="send-button" onClick={sendMessage}>
-            <FiSend size={20} />
-          </button>
-          <button className="upload-button">
-            <FiUpload size={20} />
-          </button>
-        </div>
+  <textarea
+    rows="1"
+    placeholder="Type your message here..."
+    value={message}
+    onChange={(e) => setMessage(e.target.value)}
+    onKeyPress={(e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault(); // Prevent new line
+        sendMessage(); // Send message on Enter key press
+      }
+    }}
+    onInput={(e) => {
+      e.target.style.height = 'auto';
+      e.target.style.height = `${e.target.scrollHeight}px`;
+    }}
+  />
+  <div className="chat-buttons">
+    <button className="send-button" onClick={sendMessage}>
+      <FiSend size={23}/> {/* Send icon */}
+    </button>
+    <div className="vertical-line"></div>
+    <button className="upload-button">
+      <FiUpload size={23} /> {/* Upload icon */}
+    </button>
+  </div>
+</div>
       </div>
       <div className="chat-sidebar">
         <div className="header-buttons">
