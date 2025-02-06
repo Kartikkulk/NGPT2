@@ -82,12 +82,12 @@ The application will be available at `http://localhost:3000`.
 
    Input:
    ```
-   Hello, NeuroGPT!
+   Hello, GPT
    ```
 
    Output:
    ```
-   User: Hello, NeuroGPT!
+   User: Hello, GPT!
    Bot: Hello! How can I assist you today?
    ```
 
