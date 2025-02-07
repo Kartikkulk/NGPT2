@@ -217,11 +217,11 @@ function ChatTriggerUI() {
   />
   <div className="chat-buttons">
     <button className="send-button" onClick={sendMessage}>
-      <FiSend size={23}/> {/* Send icon */}
+      <FiSend size={24}/> {/* Send icon */}
     </button>
     <div className="vertical-line"></div>
     <button className="upload-button">
-      <FiUpload size={23} /> {/* Upload icon */}
+      <FiUpload size={24} /> {/* Upload icon */}
     </button>
   </div>
 </div>
