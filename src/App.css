@@ -97,24 +97,54 @@ a {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Add spacing between messages */
 }
 
+/* User and Bot Messages Alignment */
 .message {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  word-wrap: break-word;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
+/* User messages (Align right) */
 .message.user {
-  text-align: right;
-}
-
-.message.bot {
+  align-self: flex-end;
+  background-color: #fafcff;
+  color: rgb(20, 20, 20);
   text-align: left;
+  border-top-right-radius: 0;
 }
 
-.message strong {
-  display: block;
-  margin-bottom: 5px;
+/* Bot messages (Align left) */
+.message.bot {
+  align-self: flex-start;
+  background-color: #f4f4f9;
+  color: #333;
+  text-align: left;
+  border-top-left-radius: 0;
+  border: 1px solid #ddd;
 }
+
+/* Proper Spacing for Headings */
+.message h1, .message h2, .message h3 {
+  margin: 10px 0 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Remove extra colons and ensure clear spacing */
+.message p {
+  margin: 5px 0;
+}
+
 
 .prose {
   background: #f4f4f9;
