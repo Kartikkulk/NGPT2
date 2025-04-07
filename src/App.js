@@ -82,12 +82,8 @@
       const baseQuery = collection(db, "chatHistory");
     
       const q = user
-        ? query(
-            baseQuery,
-            where("user", "==", user),
-            orderBy("timestamp", "desc")
-          )
-        : query(baseQuery, orderBy("timestamp", "desc")); // fallback
+        ? query(baseQuery, where("user", "==", user), orderBy("timestamp", "desc"))
+        : query(baseQuery, orderBy("timestamp", "desc"));
     
       const unsubscribe = onSnapshot(q, (snapshot) => {
         const history = snapshot.docs.map((doc) => ({
@@ -95,6 +91,14 @@
           ...doc.data(),
         }));
         setChatHistory(history);
+    
+        const storedSessionId = localStorage.getItem("selectedSessionId");
+        if (storedSessionId) {
+          const session = history.find((s) => s.id === storedSessionId);
+          if (session) {
+            setSelectedSession(session);
+          }
+        }
       });
     
       return () => unsubscribe();
@@ -191,6 +195,7 @@
       if (window.confirm("Are you sure you want to close and start a new session?")) {
         setConversation([]);
         setSelectedSession(null);
+        localStorage.removeItem("selectedSessionId"); // Clear saved session
       }
     };
 
@@ -319,7 +324,10 @@
           </div>
           <h2>Chat History</h2>
           {chatHistory.map((session) => (
-            <div key={session.id} className="session" onClick={() => setSelectedSession(session)}>
+            <div key={session.id} className="session" onClick={() => {
+              setSelectedSession(session);
+              localStorage.setItem("selectedSessionId", session.id); // Save selected session ID
+            }}>
               <strong>{session.messages[0].text.split(" ").slice(0, 5).join(" ")}</strong>
               <small>{new Date(session.timestamp).toLocaleString()}</small>
             </div>
